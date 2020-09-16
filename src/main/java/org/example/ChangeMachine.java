@@ -56,6 +56,12 @@ public class ChangeMachine {
           results.put(denomination, results.get(denomination) + 1);
         }
       }
+      
+      // Don't look at all denominations if we don't need to 
+      if(remainingAmount == 0){
+        break;
+      }
+      
     }
 
     return results;
