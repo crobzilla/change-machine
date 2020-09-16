@@ -31,8 +31,8 @@ public class ChangeMachine {
 
     Map<Integer, Integer> results = new HashMap<>();
 
-    // Sort the denominations so biggest bills are at the end 
-    // Ex: [1, 5, 20, 50]
+    // Sort the denominations so biggest denomination is first 
+    // Ex: [50, 20, 10, 1]
     List<Integer> orderedDenominations = new ArrayList<>(denominations);
     Collections.sort(orderedDenominations, Collections.reverseOrder());
 
