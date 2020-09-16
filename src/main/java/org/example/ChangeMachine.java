@@ -38,25 +38,22 @@ public class ChangeMachine {
 
     Integer remainingAmount = Integer.valueOf(amount);
 
-    while(remainingAmount > 0){
+    // Loop through each of our denomination values, largest first
+    for(Integer denomination: orderedDenominations ){
 
-      // Loop through each of our denomination values, largest first
-      for(Integer denomination: orderedDenominations ){
+      // If we are able to deduct the denomination value from our remaining amount, do it until we can't
+      while(remainingAmount - denomination >= 0){
 
-        // If we are able to deduct the denomination value from our remaining amount, do it until we can't
-        while(remainingAmount - denomination >= 0){
+        remainingAmount = remainingAmount - denomination;
 
-          remainingAmount = remainingAmount - denomination;
+        // First time seeing this denomination
+        if(results.get(denomination) == null) {
+          results.put(denomination, Integer.valueOf(1));
+        }
 
-          // First time seeing this denomination
-          if(results.get(denomination) == null) {
-            results.put(denomination, Integer.valueOf(1));
-          }
-
-          // Increment the number for this denomination  
-          else{
-            results.put(denomination, results.get(denomination) + 1);
-          }
+        // Increment the number for this denomination  
+        else{
+          results.put(denomination, results.get(denomination) + 1);
         }
       }
     }
