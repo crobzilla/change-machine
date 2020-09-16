@@ -31,7 +31,7 @@ public class ChangeMachine {
 
     Map<Integer, Integer> results = new HashMap<>();
 
-    // Sort the denominations so biggest denomination is first 
+    // Sort the denominations so the biggest denomination is first 
     // Ex: [50, 20, 10, 1]
     List<Integer> orderedDenominations = new ArrayList<>(denominations);
     Collections.sort(orderedDenominations, Collections.reverseOrder());
@@ -43,7 +43,7 @@ public class ChangeMachine {
       // Loop through each of our denomination values, largest first
       for(Integer denomination: orderedDenominations ){
 
-        // If we are able to deduct the denomination value from our remaining amount, do it
+        // If we are able to deduct the denomination value from our remaining amount, do it until we can't
         while(remainingAmount - denomination >= 0){
 
           remainingAmount = remainingAmount - denomination;
