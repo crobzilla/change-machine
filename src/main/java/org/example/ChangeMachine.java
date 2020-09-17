@@ -40,22 +40,25 @@ public class ChangeMachine {
 
     // Loop through each of our denomination values, largest first
     for(Integer denomination: orderedDenominations ){
-
-      // If we are able to deduct the denomination value from our remaining amount, do it until we can't
-      while(remainingAmount - denomination >= 0){
-
-        remainingAmount = remainingAmount - denomination;
-
-        // First time seeing this denomination
-        if(results.get(denomination) == null) {
-          results.put(denomination, Integer.valueOf(1));
-        }
-
-        // Increment the number for this denomination  
-        else{
-          results.put(denomination, results.get(denomination) + 1);
-        }
-      }
+      
+      results.put(denomination, remainingAmount / denomination);
+      remainingAmount = remainingAmount - (results.get(denomination) * denomination);
+      
+      //      // If we are able to deduct the denomination value from our remaining amount, do it until we can't
+      //      while(remainingAmount - denomination >= 0){
+      //
+      //        remainingAmount = remainingAmount - denomination;
+      //
+      //        // First time seeing this denomination
+      //        if(results.get(denomination) == null) {
+      //          results.put(denomination, Integer.valueOf(1));
+      //        }
+      //
+      //        // Increment the number for this denomination  
+      //        else{
+      //          results.put(denomination, results.get(denomination) + 1);
+      //        }
+      //      }
       
       // Don't look at all denominations if we don't need to 
       if(remainingAmount == 0){
@@ -71,7 +74,7 @@ public class ChangeMachine {
   public void test() {
     ChangeMachine changeMachine = new ChangeMachine();
 
-    //change for $55 should be 2:20s, 1:10, and 1:5
+    // change for $55 should be 2:20s, 1:10, and 1:5
     Map<Integer, Integer> result = changeMachine.makeChange(55, new HashSet<>(Arrays.asList(5,10,1,20)));
     assertEquals(Integer.valueOf(2), result.get(20));
     assertEquals(Integer.valueOf(1), result.get(10));
